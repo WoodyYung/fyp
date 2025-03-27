@@ -25,46 +25,68 @@ def analyze_review():
     # Lemmatization
     lemma_words = [WordNetLemmatizer().lemmatize(word) for word in deter_text]
 
-    # Emotion analysis
-    emotion_list = []
-    with open('emotion.txt', 'r') as emofile:
-        for line in emofile:
-            clear_line = line.replace('\n', '').replace(',', '').replace("'", '').strip()
-            word, emotion = clear_line.split(':')
-            if word in lemma_words:
-                emotion_list.append(emotion)
-
-    emotion_counts = Counter(emotion_list)
-     # Debug: Print matched emotions for verification
-    print("Matched emotions:", emotion_list)
-
     # Sentiment analysis
     score = SentimentIntensityAnalyzer().polarity_scores(clean_text)
     neg = score['neg']
     pos = score['pos']
+    neu = score['neu']
+
+    # Determine sentiment
     sentiment = "Neutral Sentiment"
     if neg > pos:
         sentiment = "Negative Sentiment"
     elif pos > neg:
         sentiment = "Positive Sentiment"
 
+    # Map sentiment to basic emotions
+    if pos > 0.5:
+        emotion = "Overall Satisfied"
+    elif neg > 0.5:
+        emotion = "Overall Dissatisfied"
+    elif neu > 0.5:
+        emotion = "Mixed Emotions"
+    else:
+        emotion = "Mixed Emotions"
+
     # Display results
-    result_text.set(f"Sentiment: {sentiment}\n\nEmotions: {dict(emotion_counts)}")
+    result_text.set(f"Sentiment: {sentiment}\n\nEmotion: {emotion}")
 
 # GUI setup
 root = tk.Tk()
 root.title("Review Analyzer")
+root.geometry("600x500")  # Set window size
 
-tk.Label(root, text="Enter your review:").pack(pady=5)
-review_input = tk.Text(root, height=10, width=50)
-review_input.pack(pady=5)
+# Styles
+title_font = ("Helvetica", 16, "bold")
+label_font = ("Helvetica", 12)
+button_font = ("Helvetica", 12, "bold")
+result_font = ("Helvetica", 12)
+bg_color = "#f0f0f0"
+button_color = "#4CAF50"
+button_text_color = "white"
 
-analyze_button = tk.Button(root, text="Analyze", command=analyze_review)
-analyze_button.pack(pady=5)
+root.configure(bg=bg_color)
 
+# Title
+tk.Label(root, text="Review Analyzer", font=title_font, bg=bg_color).pack(pady=10)
+
+# Input label and text box
+tk.Label(root, text="Enter your review:", font=label_font, bg=bg_color).pack(pady=5)
+review_input = tk.Text(root, height=12, width=60, font=("Helvetica", 10))
+review_input.pack(pady=10)
+
+# Analyze button
+analyze_button = tk.Button(
+    root, text="Analyze", font=button_font, bg=button_color, fg=button_text_color, command=analyze_review
+)
+analyze_button.pack(pady=10)
+
+# Result label
 result_text = tk.StringVar()
-result_label = tk.Label(root, textvariable=result_text, justify="left", wraplength=400)
-result_label.pack(pady=10)
+result_label = tk.Label(
+    root, textvariable=result_text, font=result_font, justify="left", wraplength=500, bg=bg_color
+)
+result_label.pack(pady=20)
 
 root.mainloop()
 
