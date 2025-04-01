@@ -37,23 +37,16 @@ def analyze_review():
         sentiment = "Negative Sentiment"
     elif pos > neg:
         sentiment = "Positive Sentiment"
-        # Map sentiment scores to more detailed emotions
-        if pos > 0.6:
-            emotion = "Very Satisfied"
-        elif 0.3 < pos <= 0.6:
-            emotion = "Moderately Satisfied"
-        elif neg > 0.6:
-            emotion = "Very Dissatisfied"
-        elif 0.3 < neg <= 0.6:
-            emotion = "Moderately Dissatisfied"
-        elif neu > 0.8:
-            emotion = "Neutral"
-        elif pos > neg:
-            emotion = "Slightly Positive"
-        elif neg > pos:
-            emotion = "Slightly Negative"
-        else:
-            emotion = "Mixed or Unclear"
+
+    # Map sentiment to basic emotions
+    if pos > 0.5:
+        emotion = "Overall Satisfied"
+    elif neg > 0.5:
+        emotion = "Overall Dissatisfied"
+    elif neu > 0.5:
+        emotion = "Mixed Emotions"
+    else:
+        emotion = "Mixed Emotions"
 
     # Display results
     result_text.set(f"Sentiment: {sentiment}\n\nEmotion: {emotion}")
