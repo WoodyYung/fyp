@@ -88,27 +88,56 @@ def analyze_sentiment():
     result = determine_sentiment(target, review)
     result_label.config(text=result)
 
-# Create the main application window
+# GUI setup
 root = tk.Tk()
-root.title("Sentiment Analysis Tool")
+root.title("Target Review Analyzer")
+root.geometry("600x500")
+
+# Styles
+title_font = ("Helvetica", 16, "bold")
+label_font = ("Helvetica", 12)
+button_font = ("Helvetica", 12, "bold")
+result_font = ("Helvetica", 12)
+bg_color = "#f0f0f0"
+button_color = "#4CAF50"
+button_text_color = "white"
+
+root.configure(bg=bg_color)
+
+# Title
+tk.Label(root, text="Target Review Analyzer", font=title_font, bg=bg_color).pack(pady=10)
 
 # Target input
-tk.Label(root, text="Target:").grid(row=0, column=0, padx=10, pady=5, sticky="w")
-target_entry = tk.Entry(root, width=50)
-target_entry.grid(row=0, column=1, padx=10, pady=5)
+tk.Label(root, text="Target:", font=label_font, bg=bg_color).pack(pady=5)
+target_entry = tk.Entry(root, width=50, font=("Helvetica", 10))
+target_entry.pack(pady=5)
 
 # Review input
-tk.Label(root, text="Review:").grid(row=1, column=0, padx=10, pady=5, sticky="nw")
-review_entry = tk.Text(root, width=50, height=10)
-review_entry.grid(row=1, column=1, padx=10, pady=5)
+tk.Label(root, text="Review:", font=label_font, bg=bg_color).pack(pady=5)
+review_entry = tk.Text(root, width=60, height=10, font=("Helvetica", 10))
+review_entry.pack(pady=10)
 
 # Analyze button
-analyze_button = tk.Button(root, text="Analyze Sentiment", command=analyze_sentiment)
-analyze_button.grid(row=2, column=0, columnspan=2, pady=10)
+analyze_button = tk.Button(
+    root,
+    text="Analyze Sentiment",
+    command=analyze_sentiment,
+    font=button_font,
+    bg=button_color,
+    fg=button_text_color
+)
+analyze_button.pack(pady=10)
 
 # Result display
-result_label = tk.Label(root, text="", wraplength=400, justify="left", fg="blue")
-result_label.grid(row=3, column=0, columnspan=2, padx=10, pady=10)
+result_label = tk.Label(
+    root,
+    text="",
+    font=result_font,
+    wraplength=500,
+    justify="left",
+    bg=bg_color
+)
+result_label.pack(pady=20)
 
 # Run the application
 root.mainloop()
