@@ -128,10 +128,9 @@ class HotelScraperGUI:
         l = [(tv.set(k, col), k) for k in tv.get_children('')]
         
         try:
-            # Convert price strings to numbers for sorting
             if col == "Price":
-                l.sort(key=lambda t: float(t[0].replace('EGP', '').replace(',', '').strip()), reverse=reverse)
-            # Convert rating strings to numbers for sorting
+                # Remove 'EGP', commas, and whitespace, then convert to float
+                l.sort(key=lambda t: float(''.join(filter(str.isdigit, t[0]))) if t[0] != "N/A" else -1, reverse=reverse)
             elif col == "Rating":
                 l.sort(key=lambda t: float(t[0]) if t[0] != "N/A" else -1, reverse=reverse)
             else:
@@ -143,8 +142,97 @@ class HotelScraperGUI:
         for index, (val, k) in enumerate(l):
             tv.move(k, '', index)
 
-        # Reverse sort next time
         tv.heading(col, command=lambda: self.treeview_sort_column(tv, col, not reverse))
+
+    def create_charts(self, hotels_list):
+        def format_hotel_name(name, max_length=20):
+            return str(name)[:max_length] + ('...' if len(str(name)) > max_length else '')
+
+        def show_price_chart():
+            try:
+                data = []
+                for hotel in hotels_list:
+                    try:
+                        if hotel['Price'] != "N/A":
+                            price_str = ''.join(filter(str.isdigit, hotel['Price']))
+                            if price_str:
+                                price = float(price_str)
+                                data.append((price, format_hotel_name(hotel['Hotel'])))
+                    except (ValueError, KeyError):
+                        continue
+                
+                if data:
+                    # Sort by price in descending order and take top 10
+                    data.sort(reverse=True)
+                    data = data[:10]
+                    prices, names = zip(*data)
+                    
+                    plt.figure(figsize=(12, 6))
+                    plt.rcParams['font.sans-serif'] = ['Microsoft YaHei', 'Arial']
+                    bars = plt.bar(range(len(prices)), prices)
+                    plt.xticks(range(len(prices)), names, rotation=45, ha='right')
+                    plt.title('Top 10 Most Expensive Hotels', fontsize=12)
+                    plt.xlabel('Hotels', fontsize=10)
+                    plt.ylabel('Price (HKD)', fontsize=10)
+                    
+                    # Add value labels with HKD
+                    for bar in bars:
+                        height = bar.get_height()
+                        plt.text(bar.get_x() + bar.get_width()/2., height,
+                                f'HKD {int(height):,}',
+                                ha='center', va='bottom')
+                    
+                    plt.tight_layout()
+                    plt.show()
+                else:
+                    messagebox.showwarning("No Data", "No valid price data available to display")
+            except Exception as e:
+                messagebox.showerror("Error", f"Error creating price chart: {str(e)}")
+
+        def show_rating_chart():
+            try:
+                data = []
+                for hotel in hotels_list:
+                    try:
+                        rate = hotel['Overall Rate']
+                        if rate != "N/A":
+                            score = ''.join(c for c in rate if c.isdigit() or c == '.')
+                            if score:
+                                rating = float(score)
+                                if 0 <= rating <= 10:
+                                    data.append((rating, format_hotel_name(hotel['Hotel'])))
+                    except (ValueError, KeyError, IndexError):
+                        continue
+                
+                if data:
+                    # Sort by rating in descending order and take top 10  
+                    data.sort(reverse=True)
+                    data = data[:10]
+                    ratings, names = zip(*data)
+                    
+                    plt.figure(figsize=(12, 6))
+                    plt.rcParams['font.sans-serif'] = ['Microsoft YaHei', 'Arial']  # Better font support
+                    bars = plt.bar(range(len(ratings)), ratings)
+                    plt.xticks(range(len(ratings)), names, rotation=45, ha='right')
+                    plt.title('Top 10 Highest Rated Hotels', fontsize=12)
+                    plt.xlabel('Hotels', fontsize=10)
+                    plt.ylabel('Rating', fontsize=10)
+                    
+                    # Add value labels
+                    for bar in bars:
+                        height = bar.get_height()
+                        plt.text(bar.get_x() + bar.get_width()/2., height,
+                                f'{height:.1f}',
+                                ha='center', va='bottom')
+                    
+                    plt.tight_layout()
+                    plt.show()
+                else:
+                    messagebox.showwarning("No Data", "No valid rating data available to display")
+            except Exception as e:
+                messagebox.showerror("Error", f"Error creating rating chart: {str(e)}")
+
+        return show_price_chart, show_rating_chart
 
     def show_results(self, hotels_list):
         try:
@@ -153,6 +241,15 @@ class HotelScraperGUI:
                 self.results_window = tk.Toplevel(self.root)
                 self.results_window.title("Hotels Results")
                 self.results_window.geometry("800x600")
+
+                # Create buttons frame
+                buttons_frame = ttk.Frame(self.results_window)
+                buttons_frame.pack(side="top", fill="x", padx=5, pady=5)
+
+                # Add chart buttons
+                show_price_chart, show_rating_chart = self.create_charts(hotels_list)
+                ttk.Button(buttons_frame, text="Show Price Chart", command=show_price_chart).pack(side="left", padx=5)
+                ttk.Button(buttons_frame, text="Show Rating Chart", command=show_rating_chart).pack(side="left", padx=5)
 
                 # Create Treeview
                 self.tree = ttk.Treeview(self.results_window, columns=("Hotel", "Price", "Rating"), show="headings")

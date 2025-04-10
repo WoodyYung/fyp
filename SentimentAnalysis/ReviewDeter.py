@@ -44,7 +44,7 @@ def analyze_review():
     elif neg > 0.5:
         emotion = "Overall Dissatisfied"
     elif neu > 0.5:
-        emotion = "Mixed Emotions"
+        emotion = "Calm Emotions"
     else:
         emotion = "Mixed Emotions"
 

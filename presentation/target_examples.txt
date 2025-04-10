@@ -1,0 +1,26 @@
+[Target Analysis Examples]
+
+1. Cleanliness Analysis
+Targets: "clean", "cleanliness", "hygiene"
+Sample Review:
+"The room was spotlessly clean when we arrived, but housekeeping during our stay was inconsistent. While the bathroom was always well-maintained, the carpets weren't vacuumed daily."
+
+2. Staff Service Analysis
+Targets: "staff", "service", "employee"
+Sample Review:
+"The front desk staff were extremely helpful and friendly. However, the restaurant service was slow, and some staff seemed untrained. The concierge gave excellent recommendations for local attractions."
+
+3. Location Analysis
+Targets: "location", "area", "vicinity"
+Sample Review:
+"The hotel's location is perfect for shopping and dining, right in the city center. Public transport is nearby, though the street noise can be a bit much at night. The surrounding area feels safe and well-maintained."
+
+4. Facilities Analysis
+Targets: "facilities", "amenities", "equipment"
+Sample Review:
+"The gym facilities are modern and well-maintained, but the pool was too small. The business center needs updating, especially the printers. The spa facilities were excellent though."
+
+5. Food & Dining Analysis
+Targets: "food", "breakfast", "restaurant"
+Sample Review:
+"Breakfast was disappointing with limited options and cold food. The hotel restaurant serves decent dinner but is overpriced. Room service menu is quite limited but the quality is good."

@@ -1,0 +1,17 @@
+[Positive Review 1]
+"My stay at the Grand Hotel was absolutely fantastic! The staff were incredibly helpful and professional. The room was spotlessly clean and the bed was very comfortable. The location is perfect, right in the heart of the city. Breakfast was delicious with many options to choose from."
+
+[Positive Review 2]
+"This hotel exceeded all expectations. The views from our room were breathtaking, and the service was impeccable. The staff went above and beyond to make our stay memorable. The restaurant serves excellent food, and the spa facilities are top-notch."
+
+[Mixed Review 1]
+"The location is great and the staff were friendly, but the rooms need updating. While the bed was comfortable, the bathroom fixtures were old and the shower pressure was weak. The breakfast was good though, and the WiFi worked well throughout our stay."
+
+[Mixed Review 2]
+"Decent hotel for the price. The staff were helpful but sometimes seemed overwhelmed. Room was clean but small. Location is good for business travelers but a bit far from tourist attractions. The gym is well-equipped but the pool was under maintenance."
+
+[Negative Review 1]
+"Disappointed with our stay. The room was not as advertised - much smaller and quite dated. The air conditioning was noisy and inefficient. Staff were polite but seemed disorganized. The breakfast was basic and not worth the extra cost."
+
+[Negative Review 2]
+"Would not recommend this hotel. The walls are paper-thin and we could hear everything from neighboring rooms. The cleanliness was questionable, and we found stains on the carpet. The staff were unhelpful when we raised our concerns."
