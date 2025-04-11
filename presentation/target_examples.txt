@@ -1,26 +1,14 @@
-[Target Analysis Examples]
+1. Target: iPhone, battery, screen, features
+Review: The iPhone camera quality is outstanding, but the battery is disappointing. The screen is crystal clear and the new features are amazing.
 
-1. Cleanliness Analysis
-Targets: "clean", "cleanliness", "hygiene"
-Sample Review:
-"The room was spotlessly clean when we arrived, but housekeeping during our stay was inconsistent. While the bathroom was always well-maintained, the carpets weren't vacuumed daily."
+2. Target: waiter, food, manager
+Review: The waiter was rude and inattentive. We waited for 45 minutes just to get our drinks. The food came out cold and when we complained about the service, the manager didn't care.
 
-2. Staff Service Analysis
-Targets: "staff", "service", "employee"
-Sample Review:
-"The front desk staff were extremely helpful and friendly. However, the restaurant service was slow, and some staff seemed untrained. The concierge gave excellent recommendations for local attractions."
+3. Target: pizza, crust, sauce, seasoning
+Review: This pizza place serves the best pizza in town! The crust is perfectly crispy and the sauce has just the right amount of seasoning. Even their cheese pizza is delicious.
 
-3. Location Analysis
-Targets: "location", "area", "vicinity"
-Sample Review:
-"The hotel's location is perfect for shopping and dining, right in the city center. Public transport is nearby, though the street noise can be a bit much at night. The surrounding area feels safe and well-maintained."
+4. Target: laptop, processor, keyboard, trackpad
+Review: I bought this laptop last week, and I have mixed feelings about it. The processor is fast and efficient, but the keyboard feels cheap and the trackpad isn't responsive enough.
 
-4. Facilities Analysis
-Targets: "facilities", "amenities", "equipment"
-Sample Review:
-"The gym facilities are modern and well-maintained, but the pool was too small. The business center needs updating, especially the printers. The spa facilities were excellent though."
-
-5. Food & Dining Analysis
-Targets: "food", "breakfast", "restaurant"
-Sample Review:
-"Breakfast was disappointing with limited options and cold food. The hotel restaurant serves decent dinner but is overpriced. Room service menu is quite limited but the quality is good."
+5. Target: movie, plot, characters
+Review: While the special effects in the movie were breathtaking, the plot was confusing and the characters were poorly developed. The acting performances saved some scenes, but overall it wasn't worth the ticket price.
